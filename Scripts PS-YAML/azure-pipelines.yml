@@ -1,0 +1,29 @@
+# Starter pipeline
+
+trigger: none
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: TerraformCLI@0
+  displayName: Initialization
+  inputs:
+    command: 'init'
+    allowTelemetryCollection: false
+
+- task: TerraformCLI@0
+  displayName: Plan
+  inputs:
+    command: 'plan'
+    environmentServiceName: 'terraform-aks-pipeline'
+    allowTelemetryCollection: false
+
+- task: TerraformCLI@0
+  displayName: Apply
+  inputs:
+    command: 'apply'
+    environmentServiceName: 'terraform-aks-pipeline'
+    allowTelemetryCollection: false
+
+
